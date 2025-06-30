@@ -4,12 +4,12 @@ import Wrapper from "@/components/common/wrapper";
 import FullWidthText from "@/components/custom/full-width-text";
 import Magnetic from "@/components/custom/magnetic";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUp, ArrowUpRight, MoveUp } from "lucide-react";
+import { ArrowRight, ArrowUp, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
     return (
-        <footer className=" bg-black py-12">
+        <footer className=" bg-black pb-12">
             <Wrapper>
                 <FullWidthText />
                 <div className=" w-full flex items-center justify-between -mt-20">
