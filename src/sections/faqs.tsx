@@ -18,7 +18,7 @@ const Faqs = () => {
                     <div className=" w-full h-full bg-white max-w-[26rem] rounded-xl relative p-8">
                         <div className="flex items-start justify-between">
                             <h4 className=" uppercase text-6xl font-anton text-foreground">Still have questions?</h4>
-                            <Button size="icon" className=" bg-foreground hover:bg-foreground text-white hover:text-foreground"><ArrowUpRight className=" size-6" /></Button>
+                            <Button size="icon" className=" bg-foreground hover:bg-foreground text-white hover:text-white"><ArrowUpRight className=" size-6" /></Button>
                         </div>
                         <p className=" mt-4">I’m here to help</p>
                     </div>
