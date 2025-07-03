@@ -6,8 +6,8 @@ const Testimonials = () => {
     return (
         <section className="py-20">
             <Wrapper>
-                <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">Words from <br /> Special Clients</h2>
 
+                <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">Words from <br /> Special Clients</h2>
                 <div className=" w-full mt-28 flex flex-col gap-20">
 
                     <div className=" py-12 relative flex flex-row justify-between">
@@ -39,7 +39,7 @@ const Testimonials = () => {
                         </div>
                         <p className=" max-w-lg text-foreground mt-6">“ Denzel did a really good job. He quickly understood what we were looking for delivered fast and effective. I really don’t have any negative feedback to give to give him. Good job “</p>
                     </div>
-                    
+
                     <div className=" py-12 relative flex flex-row justify-between">
                         <Separator orientation="horizontal" className=" bg-foreground opacity-20 absolute" />
                         <span className=" text-base md:text-lg font-medium mt-6">/03</span>
@@ -49,8 +49,8 @@ const Testimonials = () => {
                             <p className=" uppercase text-foreground/70">Founder@Hetzel Creative</p>
                         </div>
 
-                        <div className=" w-[204px] h-[280px] relative -mt-28">
-                            <Image fill src="/assets/client-3.png" alt="Zel" className=" border border-input rounded-2xl object-cover object-top" quality={100} />
+                        <div className=" w-[204px] h-[280px] relative -mt-28 z-20 bg-gray-200 rounded-2xl">
+                            <Image fill src="/assets/client-3.png" alt="Zel" className="rounded-2xl object-cover object-top" quality={100} />
                         </div>
                         <p className=" max-w-lg text-foreground mt-6">“Denzel was really attentive to what i needed. He paid attention to little details and delivered extraordinarily. I would recommend him to anyone.”</p>
                     </div>
