@@ -26,7 +26,7 @@ const SideMenu = ({ setIsActive, setMobileNav }: SideMenuProps) => {
       initial="initial"
       animate="enter"
       exit="exit"
-      className="menu"
+      className="menu bg-primary"
     >
       <div className="flex flex-col container w-full h-full gap-20 px-5 z-[2147483000] mt-20 pt-8  pb-28  ">
         <div
@@ -35,7 +35,7 @@ const SideMenu = ({ setIsActive, setMobileNav }: SideMenuProps) => {
           }}
           className="ml-0"
         >
-          <span className=" text-lg opacity-40">Navigation</span>
+          <span className=" text-base opacity-40">Navigation</span>
           {navItems.map((data, index) => {
             return (
               <MenuLink
@@ -50,8 +50,8 @@ const SideMenu = ({ setIsActive, setMobileNav }: SideMenuProps) => {
           })}
         </div>
         <div>
-          <span className=" text-lg opacity-40">Social Links</span>
-          <div className="flex flex-wrap md:flex-row items-center justify-between text-xl mt-4">
+          <span className=" text-base opacity-40">Social Links</span>
+          <div className="flex flex-wrap md:flex-row items-center justify-between text-lg md:text-xl mt-4">
             <Magnetic>
               <Link href="https://instagram.com/imdenzel__" target="_blank" className=" text-white">
                 <p>Instagram</p>
@@ -73,10 +73,10 @@ const SideMenu = ({ setIsActive, setMobileNav }: SideMenuProps) => {
           <div className=" w-full mt-12">
             <Button
               variant="outline"
-              className=" text-foreground w-full h-14"
+              className=" text-foreground w-full text-base h-14"
             >
 
-              admin@zeldesigns.com
+              Schedule A Call
             </Button>
 
 

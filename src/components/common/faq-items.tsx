@@ -10,7 +10,7 @@ const FaqItems = () => {
         <Accordion
             type="single"
             collapsible
-            className="w-full flex flex-col gap-4"
+            className="w-full flex flex-col gap-2 md:gap-4"
             defaultValue="item-1"
         >
             <AccordionItem value="item-1">

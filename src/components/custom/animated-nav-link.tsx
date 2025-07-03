@@ -41,7 +41,7 @@ const AnimatedNavLink = ({
           setIsActive(false);
           setMobileNav(false);
         }}
-        className="h-[44px] overflow-hidden flex items-start gap-2"
+        className="h-[44px] overflow-hidden font-anton uppercase flex items-start gap-2"
       >
         <motion.div whileHover={{ y: -44 }}>
           <span
