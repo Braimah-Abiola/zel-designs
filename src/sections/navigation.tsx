@@ -34,7 +34,7 @@ const Navigation = () => {
 
     return (
         <div className=" w-full max-w-full overflow-x-hidden">
-            <header ref={headerRef} className="fixed z-[2147483000] bg-white top-0 w-full py-2 md:py-2.5 px-4 border-b border-b-input lg:border-none md:px-20 opacity-0">
+            <header ref={headerRef} className="fixed z-[2147483000] bg-background top-0 w-full py-2 md:py-2.5 px-4 border-b border-b-input lg:border-none md:px-20 opacity-0">
                 <nav className="flex items-center justify-between">
 
                     <Link href="/">
