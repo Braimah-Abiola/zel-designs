@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${anton.variable} ${inter.variable} antialiased font-inter select-none`}
+        className={`${anton.variable} ${inter.variable} antialiased font-inter select-none overflow-x-hidden`}
       >
         <Navigation />
         <main className=" min-h-screen">

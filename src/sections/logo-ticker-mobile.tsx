@@ -4,26 +4,24 @@ import { companyLogo } from "@/constants";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
-const LogoTicker = () => {
+const LogoTickerMobile = () => {
   return (
-    <section className="max-w-[90rem]">
-      <div className="flex items-center gap-5">
-        <div className=" flex-1 md:flex-none">
-          <h2 className=" text-foreground text-base">
-            <span>
-              <Image
-                width={40}
-                height={40}
-                src="/assets/loved.svg"
-                alt="Loved"
-                className=" object-cover inline-block mr-2"
-                quality={100}
-              />
-            </span>
-            Loved by these clients - All across the globe
-          </h2>
-        </div>
-        <div className="flex flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,background_20%,background_80%,transparent)]">
+    <section className="w-full mt-8">
+      <div className="flex flex-col items-start gap-5">
+        <h2 className=" text-foreground text-base">
+          <span>
+            <Image
+              width={40}
+              height={40}
+              src="/assets/loved.svg"
+              alt="Loved"
+              className=" object-cover inline-block mr-2"
+              quality={100}
+            />
+          </span>
+          Loved by clients - Across the globe
+        </h2>
+        <div className="flex w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,background_20%,background_80%,transparent)]">
           <Marquee direction="right" autoFill speed={40} pauseOnHover>
             {companyLogo.map((logo, idx) => (
               <div
@@ -63,4 +61,4 @@ const LogoTicker = () => {
   );
 };
 
-export default LogoTicker;
+export default LogoTickerMobile;

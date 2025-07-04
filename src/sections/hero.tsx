@@ -76,19 +76,19 @@ const Hero = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className=" min-h-screen h-screen"
+            className=" min-h-screen md:h-screen"
         >
-            <Wrapper className=" w-full h-full flex flex-col items-center justify-center">
-                <motion.div variants={itemVariants} className="flex items-center gap-32">
+            <Wrapper className=" w-full h-full flex flex-col items-center justify-center pt-32 md:pt-0">
+                <motion.div variants={itemVariants} className="flex items-center w-full justify-center gap-1 md:gap-32">
                     <Image
                         height={120}
                         width={32}
                         src="/assets/bracket-left.svg"
                         alt="Bracket"
-                        className=""
+                        className=" scale-[0.40] md:scale-100"
                         quality={100}
                     />
-                    <h1 className=" uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center">
+                    <h1 className=" uppercase font-anton text-nowrap text-6xl w-fit md:text-[9rem] text-primary-foreground text-center">
                         Designs That
                     </h1>
                     <Image
@@ -96,11 +96,36 @@ const Hero = () => {
                         width={32}
                         src="/assets/bracket-right.svg"
                         alt="Bracket"
-                        className=""
+                        className=" scale-[0.40] md:scale-100"
                         quality={100}
                     />
                 </motion.div>
-                <div className="flex items-start gap-4 mt-2">
+                <div className=" md:hidden -mt-8">
+                    <div className="flex flex-col items-start">
+                        <motion.h1
+                            variants={itemVariants}
+                            className=" text-nowrap uppercase font-anton text-6xl md:text-[9rem] text-primary-foreground text-center w-full"
+                        >
+                            Move Metrics
+                        </motion.h1>
+                        <motion.p
+                            variants={textAndButtonVariants}
+                            className="mt-2 text-base text-center font-medium"
+                        >
+                            I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
+                        </motion.p>
+                        <motion.div className=" w-full flex flex-col items-center" variants={textAndButtonVariants}>
+                            <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
+                        </motion.div>
+                    </div>
+                    <div className=" w-full flex flex-col items-center gap-4 mt-8">
+                        <CardOne />
+                        <CardTwo />
+                        <CardThree />
+                        <CardFour />
+                    </div>
+                </div>
+                <div className="hidden md:inline-flex items-start gap-4 mt-2">
                     <motion.h1
                         variants={itemVariants}
                         className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center"

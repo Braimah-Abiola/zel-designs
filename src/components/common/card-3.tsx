@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CardThree = () => {
     return (
-        <div className=" w-[290px] h-[312px] rounded-2xl absolute bg-[#FD8200] flex flex-col px-6 py-6">
+        <div className=" w-full md:w-[290px] h-[312px] rounded-2xl md:absolute bg-[#FD8200] flex flex-col px-6 py-6">
 
             <h6 className=" font-anton text-4xl text-[#370606]">3X</h6>
             <p className=" text-lg text-[#370606] leading-5 mt-2">Higher <br /> Conversions</p>

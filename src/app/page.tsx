@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <main className=" min-h-screen overflow-clip">
+    <main className=" min-h-screen">
       <Hero />
       <Value />
       <Cta />

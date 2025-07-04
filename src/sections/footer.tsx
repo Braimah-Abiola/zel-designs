@@ -113,7 +113,7 @@ const Footer = () => {
                         <Button size="icon" className=" bg-white hover:bg-white text-foreground hover:text-foreground absolute bottom-4 right-4 md:bottom-12 md:right-12"><ArrowUpRight className=" size-6" /></Button>
                     </div>
 
-                    <p className=" col-span-2 w-full text-center md:hidden mt-12 text-white text-base text-nowrap">© 2025 Zeldesigns. All Rights Reserved</p>
+                    <p className=" col-span-2 w-full text-center md:hidden mt-12 text-white text-sm text-nowrap">© 2025 Zeldesigns. All Rights Reserved</p>
 
                 </div>
             </Wrapper>

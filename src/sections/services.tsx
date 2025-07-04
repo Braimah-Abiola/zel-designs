@@ -71,12 +71,17 @@ const Services = () => {
                     >
                         <motion.span
                             variants={textVariants}
-                            className=" text-base md:text-lg font-medium"
+                            className=" text-base hidden md:block md:text-lg font-medium"
                         >
                             /01
                         </motion.span>
+                        <span
+                            className=" text-sm  md:hidden font-medium"
+                        >
+                            /01
+                        </span>
 
-                        <motion.div variants={bracketVariants}>
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -86,7 +91,7 @@ const Services = () => {
                                 quality={100}
                             />
                         </motion.div>
-                        <motion.div variants={bracketVariants}>
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -97,12 +102,12 @@ const Services = () => {
                             />
                         </motion.div>
 
-                        <div className=" w-full flex gap-4 items-center justify-center">
+                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
                             <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Mobile
+                                App
                             </h2>
 
-                            <motion.div variants={imageVariants} className="relative h-[80px]">
+                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
                                 <Image
                                     fill
                                     src="/assets/1.png"
@@ -113,7 +118,7 @@ const Services = () => {
                             </motion.div>
 
                             <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                App Design
+                                Design
                             </h2>
                         </div>
                     </motion.div>
@@ -126,12 +131,18 @@ const Services = () => {
                     >
                         <motion.span
                             variants={textVariants}
-                            className=" text-base md:text-lg font-medium"
+                            className=" text-base hidden md:block md:text-lg font-medium"
                         >
                             /02
                         </motion.span>
 
-                        <motion.div variants={bracketVariants}>
+                        <span
+                            className=" text-sm  md:hidden font-medium"
+                        >
+                            /02
+                        </span>
+
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -141,7 +152,7 @@ const Services = () => {
                                 quality={100}
                             />
                         </motion.div>
-                        <motion.div variants={bracketVariants}>
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -152,12 +163,12 @@ const Services = () => {
                             />
                         </motion.div>
 
-                        <div className=" w-full flex gap-4 items-center justify-center">
+                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
                             <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
                                 Website
                             </h2>
 
-                            <motion.div variants={imageVariants} className="relative h-[80px]">
+                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
                                 <Image
                                     fill
                                     src="/assets/2.png"
@@ -181,12 +192,18 @@ const Services = () => {
                     >
                         <motion.span
                             variants={textVariants}
-                            className=" text-base md:text-lg font-medium"
+                            className=" text-base hidden md:block md:text-lg font-medium"
                         >
                             /03
                         </motion.span>
 
-                        <motion.div variants={bracketVariants}>
+                        <span
+                            className=" text-sm  md:hidden font-medium"
+                        >
+                            /03
+                        </span>
+
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -196,7 +213,7 @@ const Services = () => {
                                 quality={100}
                             />
                         </motion.div>
-                        <motion.div variants={bracketVariants}>
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -207,12 +224,12 @@ const Services = () => {
                             />
                         </motion.div>
 
-                        <div className=" w-full flex gap-4 items-center justify-center">
+                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
                             <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
                                 Branding
                             </h2>
 
-                            <motion.div variants={imageVariants} className="relative h-[80px]">
+                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
                                 <Image
                                     fill
                                     src="/assets/3.png"
@@ -234,12 +251,18 @@ const Services = () => {
                     >
                         <motion.span
                             variants={textVariants}
-                            className=" text-base md:text-lg font-medium"
+                            className=" text-base hidden md:block md:text-lg font-medium"
                         >
                             /04
                         </motion.span>
 
-                        <motion.div variants={bracketVariants}>
+                        <span
+                            className=" text-sm  md:hidden font-medium"
+                        >
+                            /04
+                        </span>
+
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -249,7 +272,7 @@ const Services = () => {
                                 quality={100}
                             />
                         </motion.div>
-                        <motion.div variants={bracketVariants}>
+                        <motion.div className=" hidden md:block" variants={bracketVariants}>
                             <Image
                                 height={120}
                                 width={32}
@@ -260,12 +283,12 @@ const Services = () => {
                             />
                         </motion.div>
 
-                        <div className=" w-full flex gap-4 items-center justify-center">
+                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
                             <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
                                 Product
                             </h2>
 
-                            <motion.div variants={imageVariants} className="relative h-[80px]">
+                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
                                 <Image
                                     fill
                                     src="/assets/4.png"

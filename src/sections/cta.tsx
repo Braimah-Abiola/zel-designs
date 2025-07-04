@@ -56,7 +56,7 @@ const Cta = () => {
     const activeContent = ctaContent[activeIndex];
 
     return (
-        <section className=" h-screen bg-black">
+        <section className=" h-screen bg-black mt-20">
             <Wrapper className=" w-full h-screen flex flex-col items-center justify-center">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -70,8 +70,8 @@ const Cta = () => {
                         <span className="text-base md:text-lg text-white font-medium">
                             (0{activeContent.id})
                         </span>
-                        <div className="flex items-center gap-4 w-full justify-center mt-8">
-                            <h2 className=" uppercase font-anton text-6xl md:text-8xl text-white text-center">
+                        <div className="flex flex-col md:flex-row items-center gap-4 w-full justify-center mt-8">
+                            <h2 className=" uppercase font-anton text-5xl md:text-8xl text-white text-center">
                                 {activeContent.firstText}
                             </h2>
                             <Image
@@ -79,10 +79,10 @@ const Cta = () => {
                                 height={80}
                                 src={activeContent.imageSrc}
                                 alt="Connect"
-                                className="object-cover"
+                                className="object-cover scale-90 md:scale-100"
                                 quality={100}
                             />
-                            <h2 className=" uppercase font-anton text-6xl md:text-8xl text-white text-center">
+                            <h2 className=" uppercase font-anton text-5xl md:text-8xl text-white text-center">
                                 {activeContent.secondText}
                             </h2>
                         </div>
