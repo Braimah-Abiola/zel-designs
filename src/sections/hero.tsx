@@ -17,6 +17,7 @@ const containerVariants: Variants = {
         opacity: 1,
         transition: {
             staggerChildren: 0.2,
+            delayChildren: 0.3,
         },
     },
 };
@@ -52,7 +53,19 @@ const textAndButtonVariants: Variants = {
     },
 };
 
-const Hero = () => {
+const letterVariants: Variants = {
+    hidden: { y: "100%" },
+    visible: (i: number) => ({
+        y: 0,
+        transition: {
+            delay: i * 0.02,
+            duration: 0.8,
+            ease: [0.6, 0.01, -0.05, 0.95],
+        },
+    }),
+};
+
+const Hero = ({ isLoading }: { isLoading: boolean }) => {
     const containerRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -75,7 +88,7 @@ const Hero = () => {
             ref={containerRef}
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            animate={!isLoading ? "visible" : "hidden"}
             className=" min-h-screen md:h-screen"
         >
             <Wrapper className=" w-full h-full flex flex-col items-center justify-center pt-32 md:pt-0">
@@ -88,8 +101,17 @@ const Hero = () => {
                         className=" scale-[0.40] md:scale-100"
                         quality={100}
                     />
-                    <h1 className=" uppercase font-anton text-nowrap text-6xl w-fit md:text-[9rem] text-primary-foreground text-center">
-                        Designs That
+                    <h1 className=" uppercase font-anton text-nowrap text-6xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden">
+                        {"Designs That".split("").map((letter, i) => (
+                            <motion.span
+                                key={i}
+                                custom={i}
+                                variants={letterVariants}
+                                className="inline-block"
+                            >
+                                {letter === " " ? "\u00A0" : letter}
+                            </motion.span>
+                        ))}
                     </h1>
                     <Image
                         height={120}
@@ -104,9 +126,18 @@ const Hero = () => {
                     <div className="flex flex-col items-start">
                         <motion.h1
                             variants={itemVariants}
-                            className=" text-nowrap uppercase font-anton text-6xl md:text-[9rem] text-primary-foreground text-center w-full"
+                            className=" text-nowrap uppercase font-anton text-6xl md:text-[9rem] text-primary-foreground text-center w-full overflow-hidden"
                         >
-                            Move Metrics
+                            {"Move Metrics".split("").map((letter, i) => (
+                                <motion.span
+                                    key={i}
+                                    custom={i}
+                                    variants={letterVariants}
+                                    className="inline-block"
+                                >
+                                    {letter === " " ? "\u00A0" : letter}
+                                </motion.span>
+                            ))}
                         </motion.h1>
                         <motion.p
                             variants={textAndButtonVariants}
@@ -128,9 +159,18 @@ const Hero = () => {
                 <div className="hidden md:inline-flex items-start gap-4 mt-2">
                     <motion.h1
                         variants={itemVariants}
-                        className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center"
+                        className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
                     >
-                        Move
+                        {"Move".split("").map((letter, i) => (
+                            <motion.span
+                                key={i}
+                                custom={i}
+                                variants={letterVariants}
+                                className="inline-block"
+                            >
+                                {letter}
+                            </motion.span>
+                        ))}
                     </motion.h1>
                     <motion.div
                         style={{ y: yValue }}
@@ -155,9 +195,18 @@ const Hero = () => {
                     <div className="flex flex-col items-start">
                         <motion.h1
                             variants={itemVariants}
-                            className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center"
+                            className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
                         >
-                            Metrics
+                            {"Metrics".split("").map((letter, i) => (
+                                <motion.span
+                                    key={i}
+                                    custom={i}
+                                    variants={letterVariants}
+                                    className="inline-block"
+                                >
+                                    {letter}
+                                </motion.span>
+                            ))}
                         </motion.h1>
                         <motion.p
                             variants={textAndButtonVariants}

@@ -4,6 +4,7 @@ import Wrapper from "@/components/common/wrapper";
 import { Separator } from "@/components/ui/separator";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 
 const bracketVariants: Variants = {
     rest: {
@@ -35,6 +36,22 @@ const imageVariants: Variants = {
         },
     },
 };
+const imageVariants2: Variants = {
+    rest: {
+        opacity: 0,
+        scale: 0,
+        width: 0,
+    },
+    hover: {
+        opacity: 1,
+        scale: 1,
+        width: "72px",
+        transition: {
+            duration: 0.4,
+            ease: "easeOut",
+        },
+    },
+};
 
 const textVariants: Variants = {
     rest: {
@@ -52,7 +69,48 @@ const textVariants: Variants = {
     },
 };
 
+const servicesData = [
+    {
+        id: 1,
+        title1: "App",
+        title2: "Design",
+        image: "/assets/1.png",
+        alt: "Mobile App Design",
+        bracketLeft: "/assets/s1-left.svg",
+        bracketRight: "/assets/s1-right.svg",
+    },
+    {
+        id: 2,
+        title1: "Web",
+        title2: "Design",
+        image: "/assets/2.png",
+        alt: "Web Design",
+        bracketLeft: "/assets/s2-left.svg",
+        bracketRight: "/assets/s2-right.svg",
+    },
+    {
+        id: 3,
+        title1: "Branding",
+        title2: "",
+        image: "/assets/3.png",
+        alt: "Branding",
+        bracketLeft: "/assets/s3-left.svg",
+        bracketRight: "/assets/s3-right.svg",
+    },
+    {
+        id: 4,
+        title1: "Product",
+        title2: "Design",
+        image: "/assets/4.png",
+        alt: "Product Design",
+        bracketLeft: "/assets/s4-left.svg",
+        bracketRight: "/assets/s4-right.svg",
+    },
+];
+
 const Services = () => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
     return (
         <section className=" py-20">
             <Wrapper>
@@ -63,246 +121,78 @@ const Services = () => {
                 <Separator orientation="horizontal" className=" mt-4 w-full" />
 
                 <div className=" flex flex-col w-full gap-2">
-                    <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        animate="rest"
-                        className=" relative flex flex-row justify-between cursor-pointer border-b py-6"
-                    >
-                        <motion.span
-                            variants={textVariants}
-                            className=" text-base hidden md:block md:text-lg font-medium"
+                    {servicesData.map((service, index) => (
+                        <motion.div
+                            key={service.id}
+                            initial="rest"
+                            whileHover="hover"
+                            animate={activeIndex === index ? "hover" : "rest"}
+                            onClick={() => setActiveIndex(activeIndex === index ? null : index)}
+                            className=" relative flex flex-row justify-between cursor-pointer border-b py-6"
                         >
-                            /01
-                        </motion.span>
-                        <span
-                            className=" text-sm  md:hidden font-medium"
-                        >
-                            /01
-                        </span>
+                            <motion.span
+                                variants={textVariants}
+                                className=" text-sm md:text-lg font-medium"
+                            >
+                                /0{service.id}
+                            </motion.span>
 
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s1-left.svg"
-                                alt="Bracket"
-                                className=" absolute left-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s1-right.svg"
-                                alt="Bracket"
-                                className=" absolute right-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-
-                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                App
-                            </h2>
-
-                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
+                            <motion.div className=" " variants={bracketVariants}>
                                 <Image
-                                    fill
-                                    src="/assets/1.png"
-                                    alt="Mobile App Design"
-                                    className="  object-cover"
+                                    height={120}
+                                    width={32}
+                                    src={service.bracketLeft}
+                                    alt="Bracket"
+                                    className=" scale-[0.5] md:scale-100 absolute left-[-8px] md:left-0 top-1/2 -translate-y-1/2"
+                                    quality={100}
+                                />
+                            </motion.div>
+                            <motion.div className=" " variants={bracketVariants}>
+                                <Image
+                                    height={120}
+                                    width={32}
+                                    src={service.bracketRight}
+                                    alt="Bracket"
+                                    className=" scale-[0.5] md:scale-100 absolute right-[-8px] md:right-0 top-1/2 -translate-y-1/2"
                                     quality={100}
                                 />
                             </motion.div>
 
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Design
-                            </h2>
-                        </div>
-                    </motion.div>
+                            <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
+                                <h2 className=" uppercase -ml-4 md:-ml-0 font-anton text-5xl md:text-7xl text-primary-foreground text-center">
+                                    {service.title1}
+                                </h2>
 
-                    <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        animate="rest"
-                        className=" relative flex flex-row justify-between cursor-pointer border-b py-6"
-                    >
-                        <motion.span
-                            variants={textVariants}
-                            className=" text-base hidden md:block md:text-lg font-medium"
-                        >
-                            /02
-                        </motion.span>
+                                <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
+                                    <Image
+                                        fill
+                                        src={service.image}
+                                        alt={service.alt}
+                                        className="object-cover"
+                                        quality={100}
+                                    />
+                                </motion.div>
 
-                        <span
-                            className=" text-sm  md:hidden font-medium"
-                        >
-                            /02
-                        </span>
+                                <motion.div variants={imageVariants2} className="  md:hidden relative h-[60px]">
+                                    <Image
+                                        fill
+                                        src={service.image}
+                                        alt={service.alt}
+                                        className="object-cover rounded-md"
+                                        quality={100}
+                                    />
+                                </motion.div>
 
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s2-left.svg"
-                                alt="Bracket"
-                                className=" absolute left-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
+                                {service.title2 && (
+                                    <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
+                                        {service.title2}
+                                    </h2>
+                                )}
+                            </div>
+
+
                         </motion.div>
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s2-right.svg"
-                                alt="Bracket"
-                                className=" absolute right-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-
-                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Website
-                            </h2>
-
-                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
-                                <Image
-                                    fill
-                                    src="/assets/2.png"
-                                    alt="Website Design"
-                                    className="  object-cover"
-                                    quality={100}
-                                />
-                            </motion.div>
-
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Design
-                            </h2>
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        animate="rest"
-                        className=" relative flex flex-row justify-between cursor-pointer border-b py-6"
-                    >
-                        <motion.span
-                            variants={textVariants}
-                            className=" text-base hidden md:block md:text-lg font-medium"
-                        >
-                            /03
-                        </motion.span>
-
-                        <span
-                            className=" text-sm  md:hidden font-medium"
-                        >
-                            /03
-                        </span>
-
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s3-left.svg"
-                                alt="Bracket"
-                                className=" absolute left-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s3-right.svg"
-                                alt="Bracket"
-                                className=" absolute right-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-
-                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Branding
-                            </h2>
-
-                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
-                                <Image
-                                    fill
-                                    src="/assets/3.png"
-                                    alt="Branding"
-                                    className="  object-cover"
-                                    quality={100}
-                                />
-                            </motion.div>
-
-                        </div>
-                    </motion.div>
-
-
-                    <motion.div
-                        initial="rest"
-                        whileHover="hover"
-                        animate="rest"
-                        className=" relative flex flex-row justify-between cursor-pointer border-b py-6"
-                    >
-                        <motion.span
-                            variants={textVariants}
-                            className=" text-base hidden md:block md:text-lg font-medium"
-                        >
-                            /04
-                        </motion.span>
-
-                        <span
-                            className=" text-sm  md:hidden font-medium"
-                        >
-                            /04
-                        </span>
-
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s4-left.svg"
-                                alt="Bracket"
-                                className=" absolute left-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-                        <motion.div className=" hidden md:block" variants={bracketVariants}>
-                            <Image
-                                height={120}
-                                width={32}
-                                src="/assets/s4-right.svg"
-                                alt="Bracket"
-                                className=" absolute right-0 top-1/2 -translate-y-1/2"
-                                quality={100}
-                            />
-                        </motion.div>
-
-                        <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Product
-                            </h2>
-
-                            <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
-                                <Image
-                                    fill
-                                    src="/assets/4.png"
-                                    alt="Website Design"
-                                    className="  object-cover"
-                                    quality={100}
-                                />
-                            </motion.div>
-
-                            <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                Design
-                            </h2>
-                        </div>
-                    </motion.div>
+                    ))}
                 </div>
             </Wrapper>
         </section>

@@ -1,5 +1,6 @@
 "use client"
 
+import Preloader from "@/components/custom/preloader";
 import AboutMe from "@/sections/about";
 import Cta from "@/sections/cta";
 import Faqs from "@/sections/faqs";
@@ -10,10 +11,13 @@ import Testimonials from "@/sections/testimonials";
 import Value from "@/sections/value";
 
 import Lenis from "@studio-freight/lenis";
-import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const lenis = new Lenis();
     function raf(time: number): void {
@@ -25,7 +29,10 @@ const Home = () => {
 
   return (
     <main className=" min-h-screen">
-      <Hero />
+      <AnimatePresence mode="wait">
+        {isLoading && <Preloader onAnimationComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+      <Hero isLoading={isLoading} />
       <Value />
       <Cta />
       <Services />
