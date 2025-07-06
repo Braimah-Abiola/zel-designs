@@ -112,7 +112,7 @@ const Services = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
-        <section className=" py-20">
+        <section id="services" className=" py-20">
             <Wrapper>
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
                     <span className=" text-lg font-medium">/Services</span>

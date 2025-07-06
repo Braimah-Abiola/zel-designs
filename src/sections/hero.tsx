@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 const containerVariants: Variants = {
@@ -101,7 +102,7 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                         className=" scale-[0.40] md:scale-100"
                         quality={100}
                     />
-                    <h1 className=" uppercase font-anton text-nowrap text-6xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden">
+                    <h1 className=" uppercase font-anton text-nowrap text-5xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden">
                         {"Designs That".split("").map((letter, i) => (
                             <motion.span
                                 key={i}
@@ -126,7 +127,7 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                     <div className="flex flex-col items-start">
                         <motion.h1
                             variants={itemVariants}
-                            className=" text-nowrap uppercase font-anton text-6xl md:text-[9rem] text-primary-foreground text-center w-full overflow-hidden"
+                            className=" text-nowrap uppercase font-anton text-5xl md:text-[9rem] text-primary-foreground text-center w-full overflow-hidden"
                         >
                             {"Move Metrics".split("").map((letter, i) => (
                                 <motion.span
@@ -146,7 +147,9 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                             I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
                         </motion.p>
                         <motion.div className=" w-full flex flex-col items-center" variants={textAndButtonVariants}>
-                            <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
+                            <Link href="https://calendly.com/denzelobeng421/30min">
+                                <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
+                            </Link>
                         </motion.div>
                     </div>
                     <div className=" w-full flex flex-col items-center gap-4 mt-8">
@@ -159,7 +162,7 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                 <div className="hidden md:inline-flex items-start gap-4 mt-2">
                     <motion.h1
                         variants={itemVariants}
-                        className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
+                        className=" text-nowrap uppercase font-anton text-5xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
                     >
                         {"Move".split("").map((letter, i) => (
                             <motion.span
@@ -195,7 +198,7 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                     <div className="flex flex-col items-start">
                         <motion.h1
                             variants={itemVariants}
-                            className=" text-nowrap uppercase font-anton text-6xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
+                            className=" text-nowrap uppercase font-anton text-5xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
                         >
                             {"Metrics".split("").map((letter, i) => (
                                 <motion.span
@@ -215,7 +218,9 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                             I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
                         </motion.p>
                         <motion.div variants={textAndButtonVariants}>
-                            <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
+                            <Link href="https://calendly.com/denzelobeng421/30min">
+                                <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
+                            </Link>
                         </motion.div>
                     </div>
                 </div>

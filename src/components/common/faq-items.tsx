@@ -17,9 +17,7 @@ const FaqItems = () => {
                 <AccordionTrigger>What do you need from me to get started?</AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
                     <p>
-                        Our flagship product combines cutting-edge technology with sleek
-                        design. Built with premium materials, it offers unparalleled
-                        performance and reliability.
+                        A brief overview of your business goals, target audience, timeline, and budget. Plus any existing brand materials you have. A quick discovery call helps me gather everything I need.
                     </p>
                 </AccordionContent>
             </AccordionItem>
@@ -27,9 +25,7 @@ const FaqItems = () => {
                 <AccordionTrigger>How long does a project usually take?</AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
                     <p>
-                        We offer worldwide shipping through trusted courier partners.
-                        Standard delivery takes 3-5 business days, while express shipping
-                        ensures delivery within 1-2 business days.
+                        1-2 weeks for website redesigns, 4-8 weeks for complex mobile apps. I break projects into phases with regular check-ins to keep everything on track.
                     </p>
                 </AccordionContent>
             </AccordionItem>
@@ -37,9 +33,7 @@ const FaqItems = () => {
                 <AccordionTrigger>What design tools do you use?</AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
                     <p>
-                        We stand behind our products with a comprehensive 30-day return
-                        policy. If you&apos;re not completely satisfied, simply return the
-                        item in its original condition.
+                        Figma for all design work - wireframes, prototypes, and final designs. It makes collaboration and developer handoff seamless.
                     </p>
                 </AccordionContent>
             </AccordionItem>
@@ -47,9 +41,7 @@ const FaqItems = () => {
                 <AccordionTrigger>Do you offer revisions?</AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
                     <p>
-                        We stand behind our products with a comprehensive 30-day return
-                        policy. If you&apos;re not completely satisfied, simply return the
-                        item in its original condition.
+                        Yes, I include 2-3 rounds of revisions per project phase. Additional revisions are available at an hourly rate.
                     </p>
                 </AccordionContent>
             </AccordionItem>
@@ -57,9 +49,7 @@ const FaqItems = () => {
                 <AccordionTrigger>Can you help after the design is done?</AccordionTrigger>
                 <AccordionContent className="flex flex-col gap-4 text-balance">
                     <p>
-                        We stand behind our products with a comprehensive 30-day return
-                        policy. If you&apos;re not completely satisfied, simply return the
-                        item in its original condition.
+                        Yes! I offer developer handoff, design system maintenance, and ongoing optimization support as your product evolves.
                     </p>
                 </AccordionContent>
             </AccordionItem>
@@ -67,4 +57,4 @@ const FaqItems = () => {
     )
 }
 
-export default FaqItems;
+export default FaqItems

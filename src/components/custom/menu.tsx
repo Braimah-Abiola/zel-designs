@@ -71,13 +71,15 @@ const SideMenu = ({ setIsActive, setMobileNav }: SideMenuProps) => {
 
 
           <div className=" w-full mt-12">
-            <Button
-              variant="outline"
-              className=" text-foreground w-full text-base h-14"
-            >
+            <Link href="https://calendly.com/denzelobeng421/30min">
+              <Button
+                variant="outline"
+                className=" text-foreground w-full text-base h-14"
+              >
 
-              Schedule A Call
-            </Button>
+                Schedule A Call
+              </Button>
+            </Link>
 
 
           </div>

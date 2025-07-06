@@ -53,10 +53,12 @@ const Navigation = () => {
 
 
                     <aside className="flex items-center gap-4">
-                        <Button
-                            className=" hidden md:flex">
-                            Book A Call <ArrowUpRight />
-                        </Button>
+                        <Link href="https://calendly.com/denzelobeng421/30min">
+                            <Button
+                                className=" hidden md:flex">
+                                Book A Call <ArrowUpRight />
+                            </Button>
+                        </Link>
 
                         <div className=" lg:hidden">
                             <motion.button

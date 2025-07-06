@@ -4,16 +4,16 @@ export const navItems = [
     href: "/#about",
   },
   {
+    title: "Services",
+    href: "/#services",
+  },
+  {
     title: "Projects",
     href: "/#projects",
   },
   {
     title: "Testimonials",
     href: "/#testimonials",
-  },
-  {
-    title: "Contacts",
-    href: "/#contacts",
   },
 ];
 
@@ -34,7 +34,6 @@ export const companyLogo = [
 
   "9.png",
 ];
-
 
 export const testimonials = [
   {

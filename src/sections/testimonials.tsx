@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Testimonials = () => {
     return (
-        <section className="py-20">
+        <section id="testimonials" className="py-20">
             <Wrapper>
 
                 <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">Words from <br /> Special Clients</h2>
