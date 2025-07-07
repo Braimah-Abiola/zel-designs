@@ -53,7 +53,7 @@ const Navigation = () => {
 
 
                     <aside className="flex items-center gap-4">
-                        <Link href="https://calendly.com/denzelobeng421/30min">
+                        <Link href="https://calendly.com/denzelobeng421/design-call">
                             <Button
                                 className=" hidden md:flex">
                                 Book A Call <ArrowUpRight />

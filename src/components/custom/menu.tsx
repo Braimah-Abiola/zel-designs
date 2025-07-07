@@ -71,7 +71,7 @@ const SideMenu = ({ setIsActive, setMobileNav }: SideMenuProps) => {
 
 
           <div className=" w-full mt-12">
-            <Link href="https://calendly.com/denzelobeng421/30min">
+            <Link href="https://calendly.com/denzelobeng421/design-call">
               <Button
                 variant="outline"
                 className=" text-foreground w-full text-base h-14"

@@ -115,7 +115,7 @@ const Footer = () => {
                         </Magnetic>
                     </div>
 
-                    <Link className=" w-full col-span-2 group" href="https://calendly.com/denzelobeng421/30min">
+                    <Link className=" w-full col-span-2 group" href="https://calendly.com/denzelobeng421/design-call">
                         <div className=" w-full mt-6 md:mt-0 h-full bg-muted hover:bg-muted/80 min-h-[10rem] rounded-xl relative">
                             <h4 className=" uppercase text-4xl md:text-6xl font-anton text-white pl-4 pt-4 md:pt-8 md:pl-8">Schedule A Call</h4>
 

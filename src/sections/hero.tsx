@@ -147,7 +147,7 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                             I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
                         </motion.p>
                         <motion.div className=" w-full flex flex-col items-center" variants={textAndButtonVariants}>
-                            <Link href="https://calendly.com/denzelobeng421/30min">
+                            <Link href="https://calendly.com/denzelobeng421/design-call">
                                 <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
                             </Link>
                         </motion.div>
@@ -218,7 +218,7 @@ const Hero = ({ isLoading }: { isLoading: boolean }) => {
                             I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
                         </motion.p>
                         <motion.div variants={textAndButtonVariants}>
-                            <Link href="https://calendly.com/denzelobeng421/30min">
+                            <Link href="https://calendly.com/denzelobeng421/design-call">
                                 <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
                             </Link>
                         </motion.div>
