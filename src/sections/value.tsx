@@ -19,7 +19,7 @@ const Value = () => {
                             quality={100}
                         />
                     </span>
-                    Steriods
+                    Steroids
                 </h2>
                 <div className=" hidden md:block">
                     <div className=" w-full md:bottom-20 md:absolute flex items-center justify-end">
