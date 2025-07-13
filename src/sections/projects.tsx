@@ -33,8 +33,8 @@ const Projects = () => {
                         </div>
                     </Link>
 
-                    <Link href="https://www.astrae.design">
-                        <div className=" w-full flex flex-col group md:col-span-2">
+                    <Link className=" md:col-span-2 w-full" href="https://www.astrae.design">
+                        <div className=" w-full flex flex-col group">
                             <div className=" w-full h-[22rem] md:h-[52rem] relative overflow-clip rounded-2xl">
                                 <Button size="icon" className=" bg-white text-foreground hover:bg-white hover:text-foreground hidden group-hover:inline-flex absolute top-4 right-4 z-20 md:size-14"><ArrowUpRight className=" scale-125" /></Button>
 
