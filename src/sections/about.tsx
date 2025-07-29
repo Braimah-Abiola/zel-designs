@@ -79,7 +79,7 @@ const AboutMe = () => {
         <section
             id='about'
             ref={aboutContainer}
-            className="flex flex-row justify-between gap-12 min-h-[50vh] items-start px-4 md:px-12 w-full pt-28"
+            className="flex flex-row justify-between gap-12 min-h-[64vh] items-start px-4 md:px-12 w-full pt-28"
         >
             <span className=' text-lg font-medium md:text-xl w-full text-start'>About Me</span>
 
