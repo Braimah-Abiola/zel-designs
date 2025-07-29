@@ -1,231 +1,101 @@
 "use client";
 
-import CardOne from "@/components/common/card-1";
-import CardTwo from "@/components/common/card-2";
-import CardThree from "@/components/common/card-3";
-import CardFour from "@/components/common/card-4";
-import Wrapper from "@/components/common/wrapper";
-import { Button } from "@/components/ui/button";
-import { motion, useScroll, useTransform, Variants } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import FullWidthText from "@/components/custom/full-width-text";
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const containerVariants: Variants = {
-    hidden: { opacity: 1 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.2,
-            delayChildren: 0.3,
-        },
-    },
-};
+const Hero = () => {
+    const [mouseX, setMouseX] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(0);
+    const heroRef = useRef<HTMLElement>(null);
 
-const itemVariants: Variants = {
-    hidden: { opacity: 1, y: 0 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.5, ease: "easeOut" } },
-};
-
-const cardContainerVariants: Variants = {
-    hidden: { width: 0 },
-    visible: {
-        width: "312px",
-        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.5 },
-    },
-};
-
-const cardsVariants: Variants = {
-    hidden: { opacity: 0, y: "50vh" },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 1, ease: [0.215, 0.61, 0.355, 1], delay: 1.3 },
-    },
-};
-
-const textAndButtonVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, ease: "easeOut", delay: 1.8 },
-    },
-};
-
-const letterVariants: Variants = {
-    hidden: { y: "100%" },
-    visible: (i: number) => ({
-        y: 0,
-        transition: {
-            delay: i * 0.02,
-            duration: 0.8,
-            ease: [0.6, 0.01, -0.05, 0.95],
-        },
-    }),
-};
-
-const Hero = ({ isLoading }: { isLoading: boolean }) => {
-    const containerRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"],
+        target: heroRef,
+        offset: ["start start", "end start"]
     });
 
-    const yValue = useTransform(scrollYProgress, [0, 1], ["0%", "250%"]);
-    const cardOneX = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-    const cardOneRotate = useTransform(scrollYProgress, [0, 1], [0, 0]);
-    const cardTwoX = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-    const cardTwoRotate = useTransform(scrollYProgress, [0, 1], [-4, 0]);
-    const cardThreeX = useTransform(scrollYProgress, [0, 1], ["0%", "150%"]);
-    const cardThreeRotate = useTransform(scrollYProgress, [0, 1], [0, 0]);
-    const cardFourX = useTransform(scrollYProgress, [0, 1], ["0%", "250%"]);
-    const cardFourRotate = useTransform(scrollYProgress, [0, 1], [4, 0]);
+    const yTransform = useTransform(scrollYProgress, [0, 1], [0, 1080]);
+    const widthTransform = useTransform(scrollYProgress, [0, 1], [720, windowWidth > 0 ? windowWidth - 68 : 720]);
 
+    // Create a motion value for current width to use in mouse tracking
+    const currentWidth = useMotionValue(720);
 
+    // Update current width when widthTransform changes
+    useEffect(() => {
+        const unsubscribe = widthTransform.onChange((latest) => {
+            currentWidth.set(latest);
+        });
+        return unsubscribe;
+    }, [widthTransform, currentWidth]);
+
+    // Calculate mouse offset based on current width
+    const mouseOffset = useTransform(
+        () => windowWidth > 0 ? (mouseX / windowWidth - 0.025) * Math.max(0, windowWidth - currentWidth.get()) : 0
+    );
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            setMouseX(e.clientX);
+        };
+
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        setWindowWidth(window.innerWidth);
+
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
-        <motion.section
-            ref={containerRef}
-            variants={containerVariants}
-            initial="hidden"
-            animate={!isLoading ? "visible" : "hidden"}
-            className=" min-h-screen md:h-screen"
-        >
-            <Wrapper className=" w-full h-full flex flex-col items-center justify-center pt-32 md:pt-0">
-                <motion.div variants={itemVariants} className="flex items-center w-full justify-center gap-1 md:gap-32">
-                    <Image
-                        height={120}
-                        width={32}
-                        src="/assets/bracket-left.svg"
-                        alt="Bracket"
-                        className=" scale-[0.40] md:scale-100"
-                        quality={100}
-                    />
-                    <h1 className=" uppercase font-anton text-nowrap text-5xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden">
-                        {"Designs That".split("").map((letter, i) => (
-                            <motion.span
-                                key={i}
-                                custom={i}
-                                variants={letterVariants}
-                                className="inline-block"
-                            >
-                                {letter === " " ? "\u00A0" : letter}
-                            </motion.span>
-                        ))}
-                    </h1>
-                    <Image
-                        height={120}
-                        width={32}
-                        src="/assets/bracket-right.svg"
-                        alt="Bracket"
-                        className=" scale-[0.40] md:scale-100"
-                        quality={100}
-                    />
-                </motion.div>
-                <div className=" md:hidden -mt-8">
-                    <div className="flex flex-col items-start">
-                        <motion.h1
-                            variants={itemVariants}
-                            className=" text-nowrap uppercase font-anton text-5xl md:text-[9rem] text-primary-foreground text-center w-full overflow-hidden"
-                        >
-                            {"Move Metrics".split("").map((letter, i) => (
-                                <motion.span
-                                    key={i}
-                                    custom={i}
-                                    variants={letterVariants}
-                                    className="inline-block"
-                                >
-                                    {letter === " " ? "\u00A0" : letter}
-                                </motion.span>
-                            ))}
-                        </motion.h1>
-                        <motion.p
-                            variants={textAndButtonVariants}
-                            className="mt-2 text-base text-center font-medium"
-                        >
-                            I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
-                        </motion.p>
-                        <motion.div className=" w-full flex flex-col items-center" variants={textAndButtonVariants}>
-                            <Link href="https://calendly.com/denzelobeng421/design-call">
-                                <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
-                            </Link>
-                        </motion.div>
-                    </div>
-                    <div className=" w-full flex flex-col items-center gap-4 mt-8">
-                        <CardOne />
-                        <CardTwo />
-                        <CardThree />
-                        <CardFour />
-                    </div>
+        <section ref={heroRef} className=" w-full min-h-screen relative pt-52">
+            <div className=" px-4 md:px-8 flex flex-col -space-y-14">
+                <div className="flex pl-4 pr-12 items-center justify-between">
+                    <span className=" font-medium text-lg">A</span>
+                    <span className=" font-medium text-lg">VERY</span>
+                    <span className=" font-medium text-lg">RARE</span>
                 </div>
-                <div className="hidden md:inline-flex items-start gap-4 mt-2">
-                    <motion.h1
-                        variants={itemVariants}
-                        className=" text-nowrap uppercase font-anton text-5xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
-                    >
-                        {"Move".split("").map((letter, i) => (
-                            <motion.span
-                                key={i}
-                                custom={i}
-                                variants={letterVariants}
-                                className="inline-block"
-                            >
-                                {letter}
-                            </motion.span>
-                        ))}
-                    </motion.h1>
-                    <motion.div
-                        style={{ y: yValue }}
-                        variants={cardContainerVariants}
-                        className=" relative w-[290px] h-[312px]"
-                    >
-                        <motion.div variants={cardsVariants} className=" w-full h-full">
-                            <motion.div style={{ x: cardFourX, rotate: cardFourRotate }}>
-                                <CardFour />
-                            </motion.div>
-                            <motion.div style={{ x: cardThreeX, rotate: cardThreeRotate }}>
-                                <CardThree />
-                            </motion.div>
-                            <motion.div style={{ x: cardTwoX, rotate: cardTwoRotate }}>
-                                <CardTwo />
-                            </motion.div>
-                            <motion.div style={{ x: cardOneX, rotate: cardOneRotate }}>
-                                <CardOne />
-                            </motion.div>
-                        </motion.div>
-                    </motion.div>
-                    <div className="flex flex-col items-start">
-                        <motion.h1
-                            variants={itemVariants}
-                            className=" text-nowrap uppercase font-anton text-5xl w-fit md:text-[9rem] text-primary-foreground text-center overflow-hidden"
-                        >
-                            {"Metrics".split("").map((letter, i) => (
-                                <motion.span
-                                    key={i}
-                                    custom={i}
-                                    variants={letterVariants}
-                                    className="inline-block"
-                                >
-                                    {letter}
-                                </motion.span>
-                            ))}
-                        </motion.h1>
-                        <motion.p
-                            variants={textAndButtonVariants}
-                            className="mt-2 max-w-sm text-base md:text-lg font-medium"
-                        >
-                            I help brands design fast, intuitive, and growth-driven digital experiences across web and mobile.
-                        </motion.p>
-                        <motion.div variants={textAndButtonVariants}>
-                            <Link href="https://calendly.com/denzelobeng421/design-call">
-                                <Button className=" mt-4">Book A Call <ArrowUpRight /></Button>
-                            </Link>
-                        </motion.div>
+                <FullWidthText text="Creative Designer" />
+
+            </div>
+            <div className=" px-4 md:px-8 flex flex-col z-20">
+                <motion.video
+                    autoPlay
+                    muted
+                    loop
+                    className=" h-auto aspect-video rounded-lg object-cover border border-black/10 -mt-12 transition-transform duration-100 ease-out"
+                    style={{
+                        x: mouseOffset,
+                        y: yTransform,
+                        width: widthTransform,
+                    }}
+                >
+                    <source src="/assets/showcase.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </motion.video>
+            </div>
+            <div className=" w-full flex items-center px-4 md:px-12 justify-between bottom-5 absolute">
+
+                <Link className=" -ml-2" href="/">
+                    <div className="relative h-12 w-12 aspect-square rounded-full bg-transparent hover:bg-primary">
+                        <Image fill src="/assets/logo.svg" className=" scale-[0.80]" alt="Logo" />
                     </div>
+                </Link>
+
+                <div className="flex items-center gap-2">
+                    <ArrowDown />
+                    <span className=" text-foreground font-medium text-lg">Explore (My Work)</span>
                 </div>
-            </Wrapper>
-        </motion.section>
+            </div>
+        </section>
     );
 }
 

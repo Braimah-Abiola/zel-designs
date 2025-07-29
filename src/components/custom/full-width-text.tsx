@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 
-const FullWidthText = () => {
+const FullWidthText = ({ text }: { text: string; }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const textRef = useRef<HTMLSpanElement | null>(null);
 
@@ -48,10 +48,10 @@ const FullWidthText = () => {
             ref={containerRef}
         >
             <span
-                className="whitespace-nowrap text-center font-anton uppercase text-white"
+                className="whitespace-nowrap text-center font-clashDisplay font-semibold text-[#1E1E1E] uppercase"
                 ref={textRef}
             >
-                ZelDesigns.
+                {text}
             </span>
         </div>
     );

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const slideUp = {
@@ -32,6 +31,11 @@ const textVariants = {
         opacity: 0,
         y: -50,
         transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] as const },
+    },
+    moveDown: {
+        opacity: 1,
+        y: 100,
+        transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] as const },
     },
 };
 
@@ -66,61 +70,49 @@ const Preloader = ({ onAnimationComplete }: { onAnimationComplete: () => void })
         if (showZeldesigns) {
             const timer = setTimeout(() => {
                 onAnimationComplete();
-            }, 1200);
+            }, 2500);
             return () => clearTimeout(timer);
         }
     }, [showZeldesigns, onAnimationComplete]);
+
+    const designerText = ["A", "RARE", "DESIGNER"];
 
     return (
         <motion.div
             variants={slideUp}
             initial="initial"
             exit="exit"
-            className="h-screen w-screen fixed top-0 left-0 bg-background z-[2147483000] text-primary-foreground flex items-center justify-center"
+            className="h-screen w-screen fixed top-0 left-0 bg-[#171717] z-[2147483000] text-white flex items-center justify-center"
         >
-            {!showZeldesigns ? (
+            <div className="flex flex-col items-center">
+                {showZeldesigns && (
+                    <motion.div variants={opacity} initial="initial" animate="enter" className="flex flex-col items-center">
+                        {designerText.map((word, wordIndex) => (
+                            <div key={wordIndex} className="flex overflow-hidden">
+                                {word.split("").map((letter, letterIndex) => (
+                                    <motion.span
+                                        key={letterIndex}
+                                        custom={wordIndex * 10 + letterIndex}
+                                        variants={wordVariants}
+                                        className=" font-clashDisplay font-semibold text-4xl md:text-6xl"
+                                    >
+                                        {letter}
+                                    </motion.span>
+                                ))}
+                            </div>
+                        ))}
+                    </motion.div>
+                )}
+
                 <motion.div
                     variants={textVariants}
                     initial="initial"
-                    exit="exit"
+                    animate={showZeldesigns ? "moveDown" : "initial"}
                     className="flex"
                 >
-                    <Image
-                        height={72}
-                        width={14}
-                        priority
-                        src="/assets/bracket-left.svg"
-                        alt="Bracket"
-                        className=" scale-[0.70] md:scale-100"
-                        quality={100}
-                    />
-                    <p className="font-anton text-4xl mt-4 md:mt-0 md:text-6xl w-[108px] md:w-[180px] text-center">{count}%</p>
-                    <Image
-                        height={72}
-                        width={14}
-                        priority
-                        src="/assets/bracket-right.svg"
-                        alt="Bracket"
-                        className=" scale-[0.70] md:scale-100"
-                        quality={100}
-                    />
+                    <p className=" font-clashDisplay font-semibold text-4xl mt-4 md:mt-8 md:text-6xl w-[108px] md:w-[180px] text-center">{count}%</p>
                 </motion.div>
-            ) : (
-                <motion.div variants={opacity} initial="initial" animate="enter">
-                    <div className="flex overflow-hidden">
-                        {"zeldesigns".split("").map((letter, i) => (
-                            <motion.span
-                                key={i}
-                                custom={i}
-                                variants={wordVariants}
-                                className="font-anton text-4xl md:text-6xl"
-                            >
-                                {letter}
-                            </motion.span>
-                        ))}
-                    </div>
-                </motion.div>
-            )}
+            </div>
         </motion.div>
     );
 };

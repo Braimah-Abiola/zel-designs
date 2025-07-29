@@ -1,14 +1,10 @@
+import { clashDisplay } from "@/lib/customFonts";
 import Footer from "@/sections/footer";
 import Navigation from "@/sections/navigation";
 import type { Metadata } from "next";
-import { Anton_SC, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-
-const anton = Anton_SC({
-  weight: "400",
-  variable: "--font-anton",
-  subsets: ["latin"],
-});
+import BottomNavigation from "@/sections/bottom-navigation";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -56,9 +52,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${anton.variable} ${inter.variable} antialiased font-inter select-none overflow-x-hidden`}
+        className={`${clashDisplay.variable} ${inter.variable} antialiased font-inter select-none overflow-x-hidden text-[#1E1E1E]`}
       >
         <Navigation />
+        <BottomNavigation />
         <main className=" min-h-screen">
           {children}
         </main>

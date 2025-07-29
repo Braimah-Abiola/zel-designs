@@ -1,23 +1,100 @@
-import Wrapper from "@/components/common/wrapper";
-import Image from "next/image";
+"use client"
+
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef, useMemo, JSX } from 'react';
+
+const phrase = "Being exceptional at my skills is a responsibility, I work at it every singly day, combining my passion for design and web interaction to create amazing digital experiences.";
+const phrase2 = "Every pixel of design, every layout, and every decision I make reflects my commitment to growth and excellence.";
 
 const AboutMe = () => {
+    const aboutContainer = useRef<HTMLDivElement | null>(null);
+
+    const letterElements = useMemo(() => {
+        const renderLettersForWord = (word: string, wordIndex: number): JSX.Element[] => {
+            return word.split("").map((letter, letterIndex) => (
+                <span
+                    className="animated-letter opacity-20"
+                    key={`word-${wordIndex}-letter-${letterIndex}`}
+                >
+                    {letter}
+                </span>
+            ));
+        };
+
+        return phrase.split(" ").map((word, wordIndex) => (
+            <p key={`word-${wordIndex}`} className="m-0 flex mr-2 mb-1">
+                {renderLettersForWord(word, wordIndex)}
+            </p>
+        ));
+    }, []);
+
+    const letterElements2 = useMemo(() => {
+        const renderLettersForWord = (word: string, wordIndex: number): JSX.Element[] => {
+            return word.split("").map((letter, letterIndex) => (
+                <span
+                    className="animated-letter opacity-20"
+                    key={`word-${wordIndex}-letter-${letterIndex}`}
+                >
+                    {letter}
+                </span>
+            ));
+        };
+
+        return phrase2.split(" ").map((word, wordIndex) => (
+            <p key={`word-${wordIndex}`} className="m-0 flex mr-2 mb-1">
+                {renderLettersForWord(word, wordIndex)}
+            </p>
+        ));
+    }, []);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+            if (aboutContainer.current) {
+                const letters = gsap.utils.toArray('.animated-letter', aboutContainer.current);
+
+                if (letters && letters.length > 0) {
+                    gsap.to(letters, {
+                        scrollTrigger: {
+                            trigger: aboutContainer.current,
+                            scrub: true,
+                            start: "top 50%",
+                            end: () => `+=${aboutContainer.current!.offsetHeight * 0.8}`,
+
+                        },
+                        opacity: 1,
+                        ease: "none",
+                        stagger: 0.05,
+                    });
+                }
+            }
+        }, aboutContainer);
+
+        return () => ctx.revert();
+    }, [letterElements]);
+
     return (
-        <section id="about" className=" py-20">
-            <Wrapper>
-                <span className=" text-base md:text-lg font-medium">/About Me</span>
-                <div className=" w-full grid grid-cols-1 md:grid-cols-2 mt-6 gap-4 md:gap-8">
-                    <div className=" w-full h-full min-h-[24rem] md:min-h-[52rem] relative">
-                        <Image fill src="/assets/about.png" alt="Zel" className=" rounded-2xl object-cover object-top" quality={100} />
-                    </div>
-                    <div className=" w-full h-full bg-primary rounded-2xl p-4 md:p-12">
-                        <h3 className=" uppercase font-anton text-4xl md:text-6xl text-primary-foreground">UI/UX Designer, <br /> Gamer & <br /> Footballer</h3>
-                        <p className=" text-base md:text-lg font-medium mt-4 md:mt-12">With a focus on design and user experience, I build interfaces that resonate—seamlessly blending aesthetics and intuitive functionality to deliver meaningful results for users and businesses alike.</p>
-                        <p className=" text-base md:text-lg font-medium mt-2 md:mt-4">I craft immersive web experiences by blending user-centered design and visual appeal, ensuring every project feels intuitive and impactful. My approach is rooted in attention to detail and a deep passion for creating seamless digital interactions.</p>
-                        <p className=" text-base md:text-lg font-medium mt-2 md:mt-4">When I&apos;m not designing, you can find me exploring creative outlets like gaming and football, or experimenting with new tech.</p>
-                    </div>
+        <section
+            id='about'
+            ref={aboutContainer}
+            className="flex flex-row justify-between gap-12 min-h-[50vh] items-start px-4 md:px-12 w-full pt-28"
+        >
+            <span className=' text-lg font-medium md:text-xl w-full text-start'>About Me</span>
+
+
+            <div className=' max-w-3xl flex flex-col gap-8'>
+
+                <div className="flex flex-wrap justify-start w-full text-2xl md:text-3xl text-start leading-tight">
+                    {letterElements}
                 </div>
-            </Wrapper>
+
+                <div className="flex flex-wrap justify-start w-full text-2xl md:text-3xl text-start leading-tight">
+                    {letterElements2}
+                </div>
+            </div>
+
         </section>
     );
 }

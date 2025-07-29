@@ -2,13 +2,11 @@
 
 import Preloader from "@/components/custom/preloader";
 import AboutMe from "@/sections/about";
-import Cta from "@/sections/cta";
-import Faqs from "@/sections/faqs";
 import Hero from "@/sections/hero";
+import MyStack from "@/sections/my-stack";
 import Projects from "@/sections/projects";
 import Services from "@/sections/services";
 import Testimonials from "@/sections/testimonials";
-import Value from "@/sections/value";
 
 import Lenis from "@studio-freight/lenis";
 import { AnimatePresence } from "framer-motion";
@@ -32,14 +30,14 @@ const Home = () => {
       <AnimatePresence mode="wait">
         {isLoading && <Preloader onAnimationComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
-      <Hero isLoading={isLoading} />
-      <Value />
-      <Cta />
+      <Hero />
+      <div className=" min-h-[110vh]" />
+      <AboutMe />
       <Services />
+      <div className=" h-[12rem]"/>
       <Projects />
       <Testimonials />
-      <Faqs />
-      <AboutMe />
+      <MyStack />
     </main>
   );
 }

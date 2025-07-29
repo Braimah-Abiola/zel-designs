@@ -1,200 +1,146 @@
 "use client";
 
-import Wrapper from "@/components/common/wrapper";
-import { Separator } from "@/components/ui/separator";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-
-const bracketVariants: Variants = {
-    rest: {
-        opacity: 0,
-    },
-    hover: {
-        opacity: 1,
-        transition: {
-            duration: 0.4,
-            delay: 0.1,
-            ease: "easeOut",
-        },
-    },
-};
-
-const imageVariants: Variants = {
-    rest: {
-        opacity: 0,
-        scale: 0,
-        width: 0,
-    },
-    hover: {
-        opacity: 1,
-        scale: 1,
-        width: "110px",
-        transition: {
-            duration: 0.4,
-            ease: "easeOut",
-        },
-    },
-};
-const imageVariants2: Variants = {
-    rest: {
-        opacity: 0,
-        scale: 0,
-        width: 0,
-    },
-    hover: {
-        opacity: 1,
-        scale: 1,
-        width: "72px",
-        transition: {
-            duration: 0.4,
-            ease: "easeOut",
-        },
-    },
-};
-
-const textVariants: Variants = {
-    rest: {
-        opacity: 1,
-        transition: {
-            duration: 1,
-            delay: 0.4,
-        },
-    },
-    hover: {
-        opacity: 0,
-        transition: {
-            duration: 0,
-        },
-    },
-};
+import { useEffect, useRef, useState } from "react";
 
 const servicesData = [
     {
         id: 1,
-        title1: "App",
-        title2: "Design",
-        image: "/assets/1.png",
-        alt: "Mobile App Design",
-        bracketLeft: "/assets/s1-left.svg",
-        bracketRight: "/assets/s1-right.svg",
+        title: "MOBILE APP DESIGN",
+        description: "Crafting intuitive, user-first mobile experiences that feel as good as they look.",
+        image: "/assets/service-1.png",
+        bgColor: "bg-[#F2F7F6]",
+        textColor: "text-black"
     },
     {
         id: 2,
-        title1: "Web",
-        title2: "Design",
-        image: "/assets/2.png",
-        alt: "Web Design",
-        bracketLeft: "/assets/s2-left.svg",
-        bracketRight: "/assets/s2-right.svg",
+        title: "WEBSITE DESIGN",
+        description: "Designing modern, responsive websites that drive engagement and elevate your brand.",
+        image: "/assets/service-2.png",
+        bgColor: "bg-[#E6EFED]",
+        textColor: "text-black"
     },
     {
         id: 3,
-        title1: "Branding",
-        title2: "",
-        image: "/assets/3.png",
-        alt: "Branding",
-        bracketLeft: "/assets/s3-left.svg",
-        bracketRight: "/assets/s3-right.svg",
+        title: "BRANDING",
+        description: "Building distinctive visual identities that capture your brand's personality and leave a lasting impression.",
+        image: "/assets/service-3.png",
+        bgColor: "bg-[#F2F7F6]",
+        textColor: "text-black"
     },
     {
         id: 4,
-        title1: "Product",
-        title2: "Design",
-        image: "/assets/4.png",
-        alt: "Product Design",
-        bracketLeft: "/assets/s4-left.svg",
-        bracketRight: "/assets/s4-right.svg",
-    },
+        title: "PRODUCT DESIGN",
+        description: "Designing seamless digital products that solve real problems and deliver meaningful user experiences.",
+        image: "/assets/service-4.png",
+        bgColor: "bg-[#E6EFED]",
+        textColor: "text-black"
+    }
 ];
 
 const Services = () => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [activeService, setActiveService] = useState(1);
+    const containerRef = useRef<HTMLElement>(null);
+    const serviceRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = serviceRefs.current.indexOf(entry.target as HTMLDivElement);
+                        if (index !== -1) {
+                            setActiveService(index + 1);
+                        }
+                    }
+                });
+            },
+            {
+                threshold: 0.6,
+                rootMargin: "-20% 0px -20% 0px"
+            }
+        );
+
+        serviceRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <section id="services" className=" py-20">
-            <Wrapper>
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-                    <span className=" text-lg font-medium">/Services</span>
-                    <p>Design that supports smart operations.</p>
+        <section ref={containerRef} className="min-h-screen">
+            <div className="px-4 md:px-12 py-8">
+                <h2 className="text-lg font-medium text-black">Services</h2>
+            </div>
+
+            {/* Services Content */}
+            <div className="relative pt-20">
+                <div className="sticky top-1/4 left-4 md:left-0 z-10 w-24 h-24">
+                    <motion.div
+                        key={activeService}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="w-60 h-[31vh] bg-black text-white flex items-center justify-center text-4xl md:text-7xl font-semibold font-clashDisplay"
+                    >
+                        0{activeService}
+                    </motion.div>
                 </div>
-                <Separator orientation="horizontal" className=" mt-4 w-full" />
 
-                <div className=" flex flex-col w-full gap-2">
+                {/* Service Items */}
+                <div className="space-y-0">
                     {servicesData.map((service, index) => (
-                        <motion.div
+                        <div
                             key={service.id}
-                            initial="rest"
-                            whileHover="hover"
-                            animate={activeIndex === index ? "hover" : "rest"}
-                            onClick={() => setActiveIndex(activeIndex === index ? null : index)}
-                            className=" relative flex flex-row justify-between cursor-pointer border-b py-6"
+                            ref={(el) => { serviceRefs.current[index] = el; }}
+                            className={`min-h-[36vh] flex items-center justify-center px-4 md:px-12 ${service.bgColor}`}
                         >
-                            <motion.span
-                                variants={textVariants}
-                                className=" text-sm md:text-lg font-medium"
-                            >
-                                /0{service.id}
-                            </motion.span>
+                            <div className="max-w-7xl w-full flex items-center justify-between">
+                                <div className="flex-1 max-w-2xl">
+                                    <motion.h3
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, ease: "easeOut" }}
+                                        viewport={{ once: false, amount: 0.3 }}
+                                        className={`text-4xl md:text-6xl font-semibold font-clashDisplay ${service.textColor} mb-6`}
+                                    >
+                                        {service.title}
+                                    </motion.h3>
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                                        viewport={{ once: false, amount: 0.3 }}
+                                        className={`text-base md:text-lg ${service.textColor === 'text-white' ? 'text-white/80' : 'text-black/70'} max-w-3xl text-nowrap`}
+                                    >
+                                        {service.description}
+                                    </motion.p>
+                                </div>
 
-                            <motion.div className=" " variants={bracketVariants}>
-                                <Image
-                                    height={120}
-                                    width={32}
-                                    src={service.bracketLeft}
-                                    alt="Bracket"
-                                    className=" scale-[0.5] md:scale-100 absolute left-[-8px] md:left-0 top-1/2 -translate-y-1/2"
-                                    quality={100}
-                                />
-                            </motion.div>
-                            <motion.div className=" " variants={bracketVariants}>
-                                <Image
-                                    height={120}
-                                    width={32}
-                                    src={service.bracketRight}
-                                    alt="Bracket"
-                                    className=" scale-[0.5] md:scale-100 absolute right-[-8px] md:right-0 top-1/2 -translate-y-1/2"
-                                    quality={100}
-                                />
-                            </motion.div>
-
-                            <div className=" w-full flex gap-2 md:gap-4 items-center justify-center">
-                                <h2 className=" uppercase -ml-4 md:-ml-0 font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                    {service.title1}
-                                </h2>
-
-                                <motion.div variants={imageVariants} className=" hidden md:block relative h-[80px]">
-                                    <Image
-                                        fill
-                                        src={service.image}
-                                        alt={service.alt}
-                                        className="object-cover"
-                                        quality={100}
-                                    />
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+                                    viewport={{ once: false, amount: 0.3 }}
+                                    className="hidden md:block flex-shrink-0 ml-12"
+                                >
+                                    <div className="w-40 h-40 flex items-center justify-center">
+                                        <Image
+                                            src={service.image}
+                                            alt={service.title}
+                                            width={160}
+                                            height={160}
+                                            className="object-contain"
+                                        />
+                                    </div>
                                 </motion.div>
-
-                                <motion.div variants={imageVariants2} className="  md:hidden relative h-[60px]">
-                                    <Image
-                                        fill
-                                        src={service.image}
-                                        alt={service.alt}
-                                        className="object-cover rounded-md"
-                                        quality={100}
-                                    />
-                                </motion.div>
-
-                                {service.title2 && (
-                                    <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">
-                                        {service.title2}
-                                    </h2>
-                                )}
                             </div>
-
-
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
-            </Wrapper>
+            </div>
         </section>
     );
 };

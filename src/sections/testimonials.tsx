@@ -1,17 +1,16 @@
-import Wrapper from "@/components/common/wrapper";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
 const Testimonials = () => {
     return (
-        <section id="testimonials" className="py-20">
-            <Wrapper>
+        <section id="testimonials" className=" bg-white py-20">
+            <div className=" w-full px-4 md:px-12">
 
-                <h2 className=" uppercase font-anton text-5xl md:text-7xl text-primary-foreground text-center">Words from <br /> Special Clients</h2>
+                <h2 className=" uppercase font-clashDisplay font-semibold text-5xl md:text-7xl text-primary-foreground text-center">Words from <br /> Special Clients</h2>
                 <div className=" w-full mt-28 flex flex-col gap-20">
 
                     <div className=" py-12 relative flex flex-col md:flex-row justify-between">
-                        <Separator orientation="horizontal" className=" bg-foreground opacity-20 absolute" />
+                        <Separator orientation="horizontal" className=" bg-white opacity-20 absolute" />
                         <span className=" text-base md:text-lg font-medium mt-6">/01</span>
 
                         <div className=" flex flex-col items-start mt-6 w-full md:w-[280px] mb-4">
@@ -26,7 +25,7 @@ const Testimonials = () => {
                     </div>
 
                     <div className=" py-12 relative flex flex-col md:flex-row justify-between">
-                        <Separator orientation="horizontal" className=" bg-foreground opacity-20 absolute" />
+                        <Separator orientation="horizontal" className=" bg-white opacity-20 absolute" />
                         <span className=" text-base md:text-lg font-medium mt-6">/02</span>
 
                         <div className=" flex flex-col items-start mt-6 w-full md:w-[280px] mb-4">
@@ -41,7 +40,7 @@ const Testimonials = () => {
                     </div>
 
                     <div className=" py-12 relative flex flex-col md:flex-row justify-between">
-                        <Separator orientation="horizontal" className=" bg-foreground opacity-20 absolute" />
+                        <Separator orientation="horizontal" className=" bg-white opacity-20 absolute" />
                         <span className=" text-base md:text-lg font-medium mt-6">/03</span>
 
                         <div className=" flex flex-col items-start mt-6 w-full md:w-[280px] mb-4">
@@ -55,7 +54,7 @@ const Testimonials = () => {
                         <p className=" md:max-w-lg text-foreground mt-6">“Denzel was really attentive to what i needed. He paid attention to little details and delivered extraordinarily. I would recommend him to anyone.”</p>
                     </div>
                 </div>
-            </Wrapper>
+            </div>
         </section>
     );
 }
