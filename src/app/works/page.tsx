@@ -107,8 +107,74 @@ const Works = () => {
                         </div>
                     </div>
                 </Link>
+                <Link className="md:col-span-2 w-full" href="https://02-galileo.vercel.app/">
+                    <div className=" w-full flex flex-col group">
+                        <div className=" w-full h-[22rem] md:h-[36rem] relative overflow-clip rounded-2xl">
+                            <Button size="icon" className=" hidden group-hover:inline-flex absolute top-4 right-4 z-20 md:size-14"><ArrowUpRight className=" scale-125" /></Button>
+
+                            <Image fill src="/assets/midas.webp" alt="Midas" className=" rounded-2xl group-hover:scale-110 transition-transform ease-in-out duration-500  object-cover" quality={100} />
+                        </div>
+                        <div className="flex items-center justify-between w-full">
+                            <div>
+                                <h4 className=" font-clashDisplay font-semibold uppercase text-4xl md:text-5xl mt-6">Midas Inc</h4>
+
+                                <p className=" text-foreground/70 mt-2 text-base md:text-lg">
+                                    Payment platform using mobile money
+                                </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                <div className="flex gap-2 items-center px-4 py-1 rounded-full border border-black/40 uppercase">
+                                    <TvMinimal className=" size-4" />
+                                    <p>Web Design</p>
+                                </div>
+                                <div className="flex gap-2 items-center px-4 py-1 rounded-full border border-black/40 uppercase">
+                                    <AppWindow className=" size-4" />
+                                    <p>UI, UX</p>
+                                </div>
+                                <div className="flex gap-2 items-center px-4 py-1 rounded-full border border-black/40 uppercase">
+                                    <p>2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
+
+                <Link className="md:col-span-2 w-full" href="https://www.genysolutions.tech/">
+                    <div className=" w-full flex flex-col group">
+                        <div className=" w-full h-[22rem] md:h-[36rem] relative overflow-clip rounded-2xl">
+                            <Button size="icon" className=" hidden group-hover:inline-flex absolute top-4 right-4 z-20 md:size-14"><ArrowUpRight className=" scale-125" /></Button>
+
+                            <Image fill src="/assets/gen-y.webp" alt="Midas" className=" rounded-2xl group-hover:scale-110 transition-transform ease-in-out duration-500  object-cover" quality={100} />
+                        </div>
+                        <div className="flex items-center justify-between w-full">
+                            <div>
+                                <h4 className=" font-clashDisplay font-semibold uppercase text-4xl md:text-5xl mt-6">Gen Y Solutions</h4>
+
+                                <p className=" text-foreground/70 mt-2 text-base md:text-lg">
+                                    An AI digital agency tailored for solutions
+                                </p>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                <div className="flex gap-2 items-center px-4 py-1 rounded-full border border-black/40 uppercase">
+                                    <TvMinimal className=" size-4" />
+                                    <p>Web Design</p>
+                                </div>
+                                <div className="flex gap-2 items-center px-4 py-1 rounded-full border border-black/40 uppercase">
+                                    <AppWindow className=" size-4" />
+                                    <p>UI, UX</p>
+                                </div>
+                                <div className="flex gap-2 items-center px-4 py-1 rounded-full border border-black/40 uppercase">
+                                    <p>2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Link>
 
             </div>
+
+            <div className=" h-[20rem]" />
+
         </div>
     );
 }

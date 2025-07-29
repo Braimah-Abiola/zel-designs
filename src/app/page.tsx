@@ -34,7 +34,7 @@ const Home = () => {
       <div className=" min-h-[110vh]" />
       <AboutMe />
       <Services />
-      <div className=" h-[12rem]"/>
+      <div className=" h-[20rem]" />
       <Projects />
       <Testimonials />
       <MyStack />
