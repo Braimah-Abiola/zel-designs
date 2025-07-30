@@ -5,13 +5,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 
 const menuItems = [
     { id: 1, title: "HOME", href: "/", image: "/assets/logo.svg" },
     { id: 2, title: "WORKS", href: "/works", image: "/assets/work-thumb.png" },
-    { id: 3, title: "SERVICES", href: "/#services", image: "/assets/service-thumb.png" },
+    {
+        id: 3,
+        title: "SERVICES",
+        href: "/#services",
+        mobileHref: "/#services-mobile",
+        image: "/assets/service-thumb.png"
+    },
 ];
 
 const containerVariants = {
@@ -56,6 +62,18 @@ const itemVariants = {
 
 const BottomNavigation = () => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIsMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkIsMobile();
+        window.addEventListener('resize', checkIsMobile);
+
+        return () => window.removeEventListener('resize', checkIsMobile);
+    }, []);
 
     return (
         <div className=" fixed bottom-0 z-[102012912] py-4 w-full max-w-full flex flex-col items-center overflow-x-hidden">
@@ -85,7 +103,16 @@ const BottomNavigation = () => {
                                             className="object-cover rounded-[2px]"
                                         />
                                     </div>
-                                    <Link href={item.href} className="flex-1">
+                                    <Link
+                                        href={item.mobileHref && isMobile ? item.mobileHref : item.href}
+                                        className="flex-1"
+                                        onClick={() => {
+                                            // Set navigation flag to prevent preloader on next page
+                                            if (typeof window !== 'undefined') {
+                                                sessionStorage.setItem('isNavigation', 'true');
+                                            }
+                                        }}
+                                    >
                                         <h4 className="text-white text-lg font-medium">{item.title}</h4>
                                     </Link>
                                 </motion.div>
@@ -103,10 +130,10 @@ const BottomNavigation = () => {
 
                     <div className=" flex flex-col items-start text-white w-[200px] md:w-[340px] ml-2 md:ml-4">
                         <h4 className=" text-lg font-medium">DENZEL OBENG</h4>
-                        <div className=" relative overflow-clip w-full ">
+                        <div className=" relative overflow-clip w-full">
                             <Marquee>
-                                <p className=" font-normal text-base text-white/70">UI DESIGNER, DESIGN FREAK, GAMER, MUSIC LOVER</p>
-                                <p className=" font-normal text-base text-white/70 ml-2">UI DESIGNER, DESIGN FREAK, GAMER, MUSIC LOVER</p>
+                                <p className=" font-normal text-base text-white/70 pr-1">UI DESIGNER, DESIGN FREAK, GAMER, MUSIC LOVER.</p>
+                                <p className=" font-normal text-base text-white/70 pl-1">UI DESIGNER, DESIGN FREAK, GAMER, MUSIC LOVER</p>
                             </Marquee>
                             <div className="absolute w-12 left-0 inset-y-0 bg-gradient-to-r z-20 from-[#1E1E1E] to-transparent" />
                             <div className="absolute w-12 right-0 inset-y-0 bg-gradient-to-l z-20 from-[#1E1E1E] to-transparent" />

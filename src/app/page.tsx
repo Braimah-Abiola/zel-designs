@@ -16,27 +16,24 @@ import { useEffect, useState } from "react";
 
 
 const Home = () => {
-  // Initialize based on whether preloader should show
+  // Initialize based on whether this is a page reload or navigation
   const [isLoading, setIsLoading] = useState(() => {
     if (typeof window !== 'undefined') {
-      return !sessionStorage.getItem('preloaderShown');
+      // Check if this is a navigation (not a reload)
+      const isNavigation = sessionStorage.getItem('isNavigation');
+      if (isNavigation) {
+        // This is a navigation, don't show preloader
+        sessionStorage.removeItem('isNavigation');
+        return false;
+      }
+      // This is a page load/reload, show preloader
+      return true;
     }
     return true; // Default to true on server-side
   });
 
   useEffect(() => {
-    // Check if preloader has been shown in this session
-    const preloaderShown = sessionStorage.getItem('preloaderShown');
-
-    if (!preloaderShown) {
-      // First load in this session - show preloader
-      setIsLoading(true);
-      sessionStorage.setItem('preloaderShown', 'true');
-    } else {
-      // Preloader already shown - don't show it again
-      setIsLoading(false);
-    }
-
+    // Only set up Lenis scroll
     const lenis = new Lenis();
     function raf(time: number): void {
       lenis.raf(time);
@@ -48,7 +45,13 @@ const Home = () => {
   return (
     <>
       <AnimatePresence mode="wait">
-        {isLoading && <Preloader onAnimationComplete={() => setIsLoading(false)} />}
+        {isLoading && (
+          <Preloader
+            onAnimationComplete={() => {
+              setIsLoading(false);
+            }}
+          />
+        )}
       </AnimatePresence>
 
       {!isLoading && (
