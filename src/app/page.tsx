@@ -3,20 +3,40 @@
 import Preloader from "@/components/custom/preloader";
 import AboutMe from "@/sections/about";
 import Hero from "@/sections/hero";
+import HeroMobile from "@/sections/hero-mobile";
 import MyStack from "@/sections/my-stack";
 import Projects from "@/sections/projects";
 import Services from "@/sections/services";
+import ServicesMobile from "@/sections/services-mobile";
 import Testimonials from "@/sections/testimonials";
 
 import Lenis from "@studio-freight/lenis";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  // Initialize based on whether preloader should show
+  const [isLoading, setIsLoading] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return !sessionStorage.getItem('preloaderShown');
+    }
+    return true; // Default to true on server-side
+  });
 
   useEffect(() => {
+    // Check if preloader has been shown in this session
+    const preloaderShown = sessionStorage.getItem('preloaderShown');
+
+    if (!preloaderShown) {
+      // First load in this session - show preloader
+      setIsLoading(true);
+      sessionStorage.setItem('preloaderShown', 'true');
+    } else {
+      // Preloader already shown - don't show it again
+      setIsLoading(false);
+    }
+
     const lenis = new Lenis();
     function raf(time: number): void {
       lenis.raf(time);
@@ -26,19 +46,40 @@ const Home = () => {
   }, []);
 
   return (
-    <main className=" min-h-screen">
+    <>
       <AnimatePresence mode="wait">
         {isLoading && <Preloader onAnimationComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
-      <Hero />
-      <div className=" min-h-[110vh]" />
-      <AboutMe />
-      <Services />
-      <div className=" h-[20rem]" />
-      <Projects />
-      <Testimonials />
-      <MyStack />
-    </main>
+
+      {!isLoading && (
+        <motion.main
+          className=" min-h-screen"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <div className=" md:hidden">
+            <HeroMobile />
+          </div>
+          <div className=" hidden md:block">
+            <Hero />
+          </div>
+          <div className=" hidden md:block min-h-[110vh]" />
+          <AboutMe />
+          <div className="  md:hidden">
+            <ServicesMobile />
+          </div>
+          <div className=" hidden md:block">
+            <Services />
+          </div>
+          <div className="hidden md:block h-[20rem]" />
+          <Projects />
+          <Testimonials />
+          <MyStack />
+        </motion.main>
+      )}
+    </>
   );
 }
 

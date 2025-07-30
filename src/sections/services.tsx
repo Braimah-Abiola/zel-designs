@@ -70,7 +70,7 @@ const Services = () => {
     }, []);
 
     return (
-        <section ref={containerRef} className="min-h-screen">
+        <section id="services" ref={containerRef} className="min-h-screen">
             <div className="px-4 md:px-12 py-8">
                 <h2 className="text-lg font-medium text-black">Services</h2>
             </div>
@@ -95,10 +95,10 @@ const Services = () => {
                         <div
                             key={service.id}
                             ref={(el) => { serviceRefs.current[index] = el; }}
-                            className={`min-h-[36vh] flex items-center justify-center px-4 md:px-12 ${service.bgColor}`}
+                            className={`min-h-[36vh] flex flex-col md:flex-row md:items-center md:justify-center px-4 md:px-12 ${service.bgColor}`}
                         >
-                            <div className="max-w-7xl w-full flex items-center justify-between">
-                                <div className="flex-1 max-w-2xl">
+                            <div className="md:max-w-7xl pl-40 w-full flex items-center justify-between">
+                                <div className="flex-1 md:max-w-2xl">
                                     <motion.h3
                                         initial={{ opacity: 0, y: 30 }}
                                         whileInView={{ opacity: 1, y: 0 }}

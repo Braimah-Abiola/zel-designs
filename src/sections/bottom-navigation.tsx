@@ -11,7 +11,7 @@ import Marquee from "react-fast-marquee";
 const menuItems = [
     { id: 1, title: "HOME", href: "/", image: "/assets/logo.svg" },
     { id: 2, title: "WORKS", href: "/works", image: "/assets/work-thumb.png" },
-    { id: 3, title: "SERVICES", href: "/services", image: "/assets/service-thumb.png" },
+    { id: 3, title: "SERVICES", href: "/#services", image: "/assets/service-thumb.png" },
 ];
 
 const containerVariants = {
@@ -96,14 +96,14 @@ const BottomNavigation = () => {
                 </AnimatePresence>
 
                 {/* Bottom Bar - Always Visible */}
-                <div className="flex items-center">
+                <div className="flex items-center w-full">
                     <div className=" h-14 aspect-square w-auto rounded-lg bg-black border border-white/5 flex items-center justify-center">
                         <Image width={28} height={28} quality={100} src="/assets/memoji.png" alt="Denzel" />
                     </div>
 
-                    <div className=" flex flex-col items-start text-white w-[340px] ml-4">
+                    <div className=" flex flex-col items-start text-white w-[200px] md:w-[340px] ml-2 md:ml-4">
                         <h4 className=" text-lg font-medium">DENZEL OBENG</h4>
-                        <div className=" relative">
+                        <div className=" relative overflow-clip w-full ">
                             <Marquee>
                                 <p className=" font-normal text-base text-white/70">UI DESIGNER, DESIGN FREAK, GAMER, MUSIC LOVER</p>
                                 <p className=" font-normal text-base text-white/70 ml-2">UI DESIGNER, DESIGN FREAK, GAMER, MUSIC LOVER</p>

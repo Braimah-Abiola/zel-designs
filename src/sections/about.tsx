@@ -60,8 +60,8 @@ const AboutMe = () => {
                         scrollTrigger: {
                             trigger: aboutContainer.current,
                             scrub: true,
-                            start: "top 50%",
-                            end: () => `+=${aboutContainer.current!.offsetHeight * 0.8}`,
+                            start: "top 35%",
+                            end: () => `+=${aboutContainer.current!.offsetHeight * 0.5}`,
 
                         },
                         opacity: 1,
@@ -79,18 +79,18 @@ const AboutMe = () => {
         <section
             id='about'
             ref={aboutContainer}
-            className="flex flex-row justify-between gap-12 min-h-[64vh] items-start px-4 md:px-12 w-full pt-28"
+            className="flex flex-col md:flex-row justify-between gap-12 min-h-[64vh] items-start px-4 md:px-12 w-full pt-28"
         >
             <span className=' text-lg font-medium md:text-xl w-full text-start'>About Me</span>
 
 
             <div className=' max-w-3xl flex flex-col gap-8'>
 
-                <div className="flex flex-wrap justify-start w-full text-2xl md:text-3xl text-start leading-tight">
+                <div className="flex flex-wrap justify-start w-full text-2xl md:text-3xl text-start leading-tight font-medium">
                     {letterElements}
                 </div>
 
-                <div className="flex flex-wrap justify-start w-full text-2xl md:text-3xl text-start leading-tight">
+                <div className="flex flex-wrap justify-start w-full text-2xl md:text-3xl text-start leading-tight font-medium">
                     {letterElements2}
                 </div>
             </div>

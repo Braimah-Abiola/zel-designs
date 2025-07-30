@@ -19,10 +19,10 @@ const Footer = () => {
 
     return (
         <footer className=" bg-white w-full px-4 md:px-12 pb-28 pt-12 flex flex-col items-center">
-            <div className=" w-full flex items-end justify-between">
+            <div className=" w-full flex flex-col md:flex-row items-start md:items-end justify-between">
                 <h2 className="font-clashDisplay font-semibold text-4xl md:text-7xl uppercase">Let&apos;s bring your <br /> project to life.</h2>
 
-                <Link href="https://calendly.com/denzelobeng421/design-call">
+                <Link className=" mt-4 md:mt-0" href="https://calendly.com/denzelobeng421/design-call">
                     <Button>Book A Call</Button>
                 </Link>
             </div>
@@ -61,14 +61,14 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="flex w-full items-center gap-4">
-                <div className="relative h-44 w-44 aspect-square rounded-full bg-transparent hover:bg-primary">
+            <div className="flex w-full items-center gap-4 mt-4 md:mt-0">
+                <div className="relative h-12 w-12 md:h-44 md:w-44 aspect-square rounded-full bg-transparent hover:bg-primary">
                     <Image fill src="/assets/logo.svg" alt="Logo" />
                 </div>
                 <FullWidthText text="zeldesigns." />
             </div>
 
-            <p className=" -mt-4">© 2025 Zeldesigns. All Rights Reserved</p>
+            <p className=" hidden md:block -mt-4">© 2025 Zeldesigns. All Rights Reserved</p>
         </footer>
     );
 }
